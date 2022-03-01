@@ -67,6 +67,17 @@ mixin _$PostViewModel on _PostViewModelBase, Store {
       ActionController(name: '_PostViewModelBase');
 
   @override
+  Color getColor(int index) {
+    final _$actionInfo = _$_PostViewModelBaseActionController.startAction(
+        name: '_PostViewModelBase.getColor');
+    try {
+      return super.getColor(index);
+    } finally {
+      _$_PostViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeRequest() {
     final _$actionInfo = _$_PostViewModelBaseActionController.startAction(
         name: '_PostViewModelBase.changeRequest');

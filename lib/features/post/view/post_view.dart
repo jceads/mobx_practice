@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../core/app_constants/enums.dart';
 import '../view_model/post_view_model.dart';
 
 class PostView extends StatelessWidget {
@@ -28,9 +29,10 @@ class PostView extends StatelessWidget {
             );
         }
       }),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text("Refresh Page"),
         onPressed: _viewModel.getAllPost,
-        child: const Icon(Icons.refresh),
+        icon: const Icon(Icons.refresh),
       ),
     );
   }
@@ -40,6 +42,7 @@ class PostView extends StatelessWidget {
         itemBuilder: (context, index) {
           final model = _viewModel.posts[index];
           return Card(
+            color: _viewModel.getColor(index),
             child: ListTile(
               title: Text("${model.title}"),
               subtitle: Text("${model.body}"),
@@ -52,18 +55,7 @@ class PostView extends StatelessWidget {
 
   AppBar appBar() {
     return AppBar(
-      title: const Text("Ruchan"),
-      leading: Observer(
-        builder: (context) => Visibility(
-          visible: _viewModel.isServiceRequestLoading,
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
-          ),
-        ),
-      ),
+      title: const Text("Mobx Practice"),
     );
   }
 }
