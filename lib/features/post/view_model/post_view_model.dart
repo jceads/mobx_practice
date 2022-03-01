@@ -25,15 +25,18 @@ abstract class _PostViewModelBase with Store {
     Colors.blue,
     Colors.cyan,
     Colors.brown,
-    Colors.deepPurple
+    Colors.deepPurple,
+    Colors.lightBlue,
+    Colors.lime,
   ];
   @action
   Color getColor(int index) {
     if (index > colorList.length - 1) {
       log("index%length= ${index % colorList.length}");
       return colorList[(index % colorList.length)];
-    } else
+    } else {
       return colorList[index];
+    }
   }
 
   @action
